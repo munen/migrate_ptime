@@ -14,7 +14,6 @@ admins.each do |username, email|
   end
 end
 
-
 # Load projects into hash indexed by ptime project_id
 fp = File.open("projects.csv")
 projects = {}
@@ -27,7 +26,7 @@ end
 
 # Get project shortname and import projects into db
 projects.each do |key, project|
-  project[:shortname] = project[:description].slice(/[a-zA-Z]{3}-\d{3}/).to_s
+  project[:shortname] = project[:description].slice(/\w{3}-\d{3}/).to_s
   if project[:shortname]
     project[:description].gsub!(project[:shortname], "")
     project[:description].gsub!(" - ", "")
